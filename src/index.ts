@@ -14,7 +14,7 @@ function cargarProductos(arreglo: number[], longitud: number) {
       prompt("Ingrese el nombre del producto en posicion " + (i + 1))
     );
   }
-  console.log("Producto: " + arreglo[i]);
+  console.log(arreglo[i]);
 }
 function cargarLaCantidadProductos(arreglo: number[], longitud: number) {
   let i: number;
@@ -53,19 +53,10 @@ function calcularCompra(
   return sumaTotal;
 }
 
-if (sumaTotal < 1000) {
-  console.log("Su compra debe ser mayor a $1000 no esta participando");
-} else if (sumaTotal > 1000 && sumaTotal < 2000) {
-  console.log("Usted esta participando por un TV Led");
-} else if (sumaTotal > 2000 && sumaTotal < 3000) {
-  console.log("Usted esta participando por una moto 0Km");
-} else if (sumaTotal > 3000) {
-  console.log("Usted esta participando por un Auto 0Km");
-}
-
 cargarProductos(nombresDeProductos, cantidadDeProductos);
 cargarLaCantidadProductos(cantidadDeEseProducto, cantidadDeProductos);
 cargarPrecioUnitarioDelProducto(precioUnitario, cantidadDeProductos);
+mostrarProductos(nombresDeProductos, cantidadDeProductos);
 console.log("Las cantidades de los productos comprados: ");
 mostrarProductos(cantidadDeEseProducto, cantidadDeProductos);
 console.log("El Precio de los productos comprados: ");
@@ -74,3 +65,14 @@ console.log(
   "El costo total de la compra es: " +
     calcularCompra(cantidadDeEseProducto, precioUnitario, cantidadDeProductos)
 );
+if (sumaTotal < 1000) {
+  console.log(
+    "Su compra debe ser mayor a $1000 no esta participando en ningun sorteo"
+  );
+} else if (sumaTotal > 1000 && sumaTotal < 2000) {
+  console.log("Usted esta participando por un TV Led");
+} else if (sumaTotal > 2000 && sumaTotal < 3000) {
+  console.log("Usted esta participando por una moto 0Km");
+} else if (sumaTotal > 3000) {
+  console.log("Usted esta participando por un Auto 0Km");
+}
