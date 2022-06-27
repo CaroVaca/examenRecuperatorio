@@ -2,7 +2,9 @@
 let cantidadDeProductos: number = Number(
   prompt("¿Cuantos productos desea comprar?")
 );
-let arregloDeProductos: number[] = new Array(cantidadDeProductos);
+let nombresDeProductos: number[] = new Array(cantidadDeProductos);
+let cantidadDeEseProducto: number[] = new Array(cantidadDeProductos);
+let precioUnitario: number[] = new Array(cantidadDeProductos);
 let sumaTotal: number = 0;
 
 function cargarProductos(arreglo: number[], longitud: number) {
@@ -11,11 +13,22 @@ function cargarProductos(arreglo: number[], longitud: number) {
     arreglo[i] = Number(
       prompt("Ingrese el nombre del producto en posicion " + (i + 1))
     );
+  }
+  console.log("Producto: " + arreglo[i]);
+}
+function cargarLaCantidadProductos(arreglo: number[], longitud: number) {
+  let i: number;
+  for (i = 0; i < longitud; i++) {
     arreglo[i] = Number(
       prompt(
         "Ingrese la Cantidad que compro de ese producto en posicion " + (i + 1)
       )
     );
+  }
+}
+function cargarPrecioUnitarioDelProducto(arreglo: number[], longitud: number) {
+  let i: number;
+  for (i = 0; i < longitud; i++) {
     arreglo[i] = Number(
       prompt(" Ingrese el precio del producto en posicion " + (i + 1))
     );
@@ -28,13 +41,36 @@ function mostrarProductos(arreglo: number[], longitud: number) {
   }
 }
 
-function calcularCompra(arreglo: number[], cantidad: number) {
+function calcularCompra(
+  arregloA: number[],
+  arregloB: number[],
+  cantidad: number
+) {
   let i: number;
   for (i = 0; i < cantidad; i++) {
-    sumaTotal += arreglo[i];
+    sumaTotal += arregloA[i] * arregloB[i];
   }
+  return sumaTotal;
 }
-cargarProductos(arregloDeProductos, cantidadDeProductos);
-mostrarProductos(arregloDeProductos, cantidadDeProductos);
 
-calcularCompra(arregloDeProductos, cantidadDeProductos);
+if (sumaTotal < 1000) {
+  console.log("Su compra debe ser mayor a $1000 no esta participando");
+} else if (sumaTotal > 1000 && sumaTotal < 2000) {
+  console.log("Usted esta participando por un TV Led");
+} else if (sumaTotal > 2000 && sumaTotal < 3000) {
+  console.log("Usted esta participando por una moto 0Km");
+} else if (sumaTotal > 3000) {
+  console.log("Usted esta participando por un Auto 0Km");
+}
+
+cargarProductos(nombresDeProductos, cantidadDeProductos);
+cargarLaCantidadProductos(cantidadDeEseProducto, cantidadDeProductos);
+cargarPrecioUnitarioDelProducto(precioUnitario, cantidadDeProductos);
+console.log("Las cantidades de los productos comprados: ");
+mostrarProductos(cantidadDeEseProducto, cantidadDeProductos);
+console.log("El Precio de los productos comprados: ");
+mostrarProductos(precioUnitario, cantidadDeProductos);
+console.log(
+  "El costo total de la compra es: " +
+    calcularCompra(cantidadDeEseProducto, precioUnitario, cantidadDeProductos)
+);
