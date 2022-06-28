@@ -2,19 +2,20 @@
 let cantidadDeProductos: number = Number(
   prompt("¿Cuantos productos desea comprar?")
 );
-let nombresDeProductos: number[] = new Array(cantidadDeProductos);
+let nombresDeProductos: string[] = new Array(cantidadDeProductos);
 let cantidadDeEseProducto: number[] = new Array(cantidadDeProductos);
 let precioUnitario: number[] = new Array(cantidadDeProductos);
 let sumaTotal: number = 0;
 
-function cargarProductos(arreglo: number[], longitud: number) {
+function cargarProductos(arreglo: string[], longitud: number) {
   let i: number;
+
   for (i = 0; i < longitud; i++) {
-    arreglo[i] = Number(
-      prompt("Ingrese el nombre del producto en posicion " + (i + 1))
+    arreglo[i] = prompt(
+      "Ingrese el nombre del producto en posicion " + (i + 1)
     );
+    console.log(arreglo[i]);
   }
-  console.log(arreglo[i]);
 }
 function cargarLaCantidadProductos(arreglo: number[], longitud: number) {
   let i: number;
@@ -56,6 +57,7 @@ function calcularCompra(
 cargarProductos(nombresDeProductos, cantidadDeProductos);
 cargarLaCantidadProductos(cantidadDeEseProducto, cantidadDeProductos);
 cargarPrecioUnitarioDelProducto(precioUnitario, cantidadDeProductos);
+console.log("Los Productos comprados son: ");
 mostrarProductos(nombresDeProductos, cantidadDeProductos);
 console.log("Las cantidades de los productos comprados: ");
 mostrarProductos(cantidadDeEseProducto, cantidadDeProductos);
